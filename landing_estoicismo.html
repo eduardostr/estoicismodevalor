@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Arte de Viver com Sabedoria — E-book Estoicismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --gold-dim: rgba(201,168,76,0.18);
+    --dark: #0D0D1A;
+    --dark2: #13132A;
+    --dark3: #1A1A35;
+    --cream: #FAF6EE;
+    --text: #F0EAD6;
+    --muted: #9B8F7A;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 80% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Greek pattern top bar */
+  .top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+    z-index: 100;
+  }
+
+  .hero-left {
+    padding: 100px 60px 80px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--gold);
+    padding: 7px 18px;
+    width: fit-content;
+    margin-bottom: 32px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+
+  .hero-badge span { color: var(--gold-light); }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(44px, 5vw, 68px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 8px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle-big {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(44px, 5vw, 68px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--gold);
+    margin-bottom: 28px;
+    animation: fadeUp 1s 0.25s ease both;
+  }
+
+  .hero-desc {
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 40px;
+    animation: fadeUp 1s 0.35s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 48px;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .divider-stat {
+    width: 1px;
+    background: rgba(201,168,76,0.3);
+    align-self: stretch;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .btn-main {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 44px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-main:hover::before { transform: translateX(100%); }
+
+  .btn-main:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+  }
+
+  .btn-arrow { font-size: 18px; transition: transform 0.3s; }
+  .btn-main:hover .btn-arrow { transform: translateX(4px); }
+
+  .cta-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .cta-guarantee svg { flex-shrink: 0; }
+
+  /* ── HERO RIGHT — BOOK MOCKUP ── */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px 80px 20px;
+    position: relative;
+    animation: fadeIn 1.2s 0.3s ease both;
+  }
+
+  .book-wrap {
+    position: relative;
+    perspective: 1200px;
+  }
+
+  .book-shadow {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.25) 0%, transparent 70%);
+    filter: blur(12px);
+  }
+
+  .book-3d {
+    width: 280px;
+    height: 390px;
+    position: relative;
+    transform: rotateY(-18deg) rotateX(3deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+
+  .book-3d:hover {
+    transform: rotateY(-8deg) rotateX(2deg) translateY(-8px);
+  }
+
+  .book-cover {
+    width: 100%;
+    height: 100%;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      8px 8px 0 rgba(0,0,0,0.5),
+      16px 16px 0 rgba(0,0,0,0.25);
+  }
+
+  /* Gold top/bottom bars on book */
+  .book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--gold);
+  }
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--gold);
+  }
+
+  .book-spine {
+    position: absolute;
+    left: -18px;
+    top: 0;
+    width: 18px;
+    height: 100%;
+    background: linear-gradient(90deg, #080810, #13132A);
+    border-left: 1px solid rgba(201,168,76,0.2);
+    transform: rotateY(90deg) translateZ(-9px);
+    transform-origin: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book-inner {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .book-badge-inner {
+    font-family: 'Cinzel', serif;
+    font-size: 7px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    border: 0.5px solid var(--gold);
+    padding: 3px 10px;
+    margin-bottom: 14px;
+  }
+
+  .book-circle {
+    width: 100px;
+    height: 100px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+  }
+
+  .book-circle::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 0.5px solid rgba(201,168,76,0.4);
+    border-radius: 50%;
+  }
+
+  .book-phi {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .book-title-inner {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 900;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .book-title-inner span { color: var(--gold); display: block; }
+
+  .book-line {
+    width: 70%;
+    height: 0.5px;
+    background: var(--gold);
+    margin: 8px auto;
+    opacity: 0.5;
+  }
+
+  .book-subtitle-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8px;
+    color: var(--gold-light);
+    text-align: center;
+    letter-spacing: 1px;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 8px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .book-bottom-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 6.5px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-top: auto;
+  }
+
+  /* Floating elements around book */
+  .float-quote {
+    position: absolute;
+    max-width: 200px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.5;
+    opacity: 0;
+    animation: floatIn 1s 1s ease forwards;
+  }
+
+  .float-quote.left {
+    left: -30px;
+    top: 60px;
+    text-align: right;
+  }
+
+  .float-quote.right {
+    right: -20px;
+    bottom: 80px;
+    text-align: left;
+  }
+
+  .float-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before, .section-label::after {
+    content: '';
+    height: 1px;
+    width: 30px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { color: var(--gold); font-style: italic; }
+
+  /* ── GOLD DIVIDER ── */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0;
+    opacity: 0.4;
+  }
+
+  /* ── BENEFITS SECTION ── */
+  .benefits {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .benefit-card {
+    padding: 44px 36px;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-card:hover::before { transform: scaleX(1); }
+  .benefit-card:hover { background: rgba(201,168,76,0.04); }
+
+  .benefit-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .benefit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .benefit-text {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CHAPTERS SECTION ── */
+  .chapters {
+    padding: 100px 0;
+    background: var(--dark3);
+  }
+
+  .chapters-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .chapters-header .section-label { justify-content: center; }
+
+  .chapters-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .chapter-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px 32px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    border-right: 1px solid rgba(201,168,76,0.1);
+    transition: background 0.2s;
+  }
+
+  .chapter-item:hover { background: rgba(201,168,76,0.04); }
+
+  .chapter-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+
+  .chapter-info { flex: 1; }
+
+  .chapter-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .chapter-sub {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── BIG QUOTE ── */
+  .big-quote-section {
+    padding: 120px 0;
+    background: var(--dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .big-quote-section::before {
+    content: '"';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 400px;
+    color: rgba(201,168,76,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .big-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.5vw, 44px);
+    font-style: italic;
+    color: var(--white);
+    max-width: 800px;
+    margin: 0 auto 24px;
+    line-height: 1.4;
+  }
+
+  .big-quote-author {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+
+  /* ── FOR WHO SECTION ── */
+  .for-who {
+    padding: 100px 0;
+    background: var(--dark2);
+  }
+
+  .for-who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .for-who-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .for-who-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    border-left: 2px solid var(--gold);
+    background: rgba(201,168,76,0.04);
+    transition: background 0.2s;
+  }
+
+  .for-who-item:hover { background: rgba(201,168,76,0.08); }
+
+  .for-who-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .for-who-text {
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .for-who-text strong {
+    color: var(--gold);
+    font-weight: 600;
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .for-who-right {
+    padding-left: 20px;
+  }
+
+  .for-who-right .section-title { margin-bottom: 24px; }
+
+  .for-who-desc {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 100px 0;
+    background: var(--dark3);
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .testimonials-header .section-label { justify-content: center; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    padding: 36px 30px;
+    border: 1px solid rgba(201,168,76,0.15);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .testimonial-card:hover { border-color: rgba(201,168,76,0.4); }
+
+  .testimonial-quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--gold);
+    line-height: 0.6;
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.6;
+  }
+
+  .testimonial-text {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    display: block;
+  }
+
+  .testimonial-role {
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Stars */
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    padding: 120px 0;
+    background: var(--dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+
+  .cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 80px 60px;
+    border: 1px solid rgba(201,168,76,0.25);
+    position: relative;
+  }
+
+  .cta-box::before, .cta-box::after {
+    content: '❖';
+    position: absolute;
+    font-size: 12px;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+  .cta-box::before { top: 16px; left: 16px; }
+  .cta-box::after { bottom: 16px; right: 16px; }
+
+  .cta-price-tag {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .cta-price-from {
+    font-size: 15px;
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  .cta-price-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .cta-price-cents {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cta-desc {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .cta-features {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .cta-feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .cta-feature svg { color: var(--gold); flex-shrink: 0; }
+
+  .btn-main-large {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 24px 60px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .btn-main-large::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-main-large:hover::before { transform: translateX(100%); }
+  .btn-main-large:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.4);
+  }
+
+  .guarantee-text {
+    font-size: 14px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    background: var(--dark);
+  }
+
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 0.6; transform: translateY(0); }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero-left { padding: 80px 30px 40px; }
+    .hero-right { padding: 0 30px 80px; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .chapters-list { grid-template-columns: 1fr; }
+    .for-who-grid { grid-template-columns: 1fr; gap: 40px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .cta-box { padding: 50px 24px; }
+    .float-quote { display: none; }
+  }
+
+  /* Sticky CTA bar */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(13,13,26,0.97);
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .sticky-cta.show { transform: translateY(0); }
+
+  .sticky-cta-left {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .sticky-cta-left span { color: var(--gold); }
+
+  .btn-sticky {
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    padding: 14px 32px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .btn-sticky:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge"><span>★</span> E-BOOK COMPLETO <span>★</span></div>
+
+    <h1 class="hero-title">A Arte de Viver</h1>
+    <div class="hero-subtitle-big">com Sabedoria</div>
+
+    <p class="hero-desc">
+      O guia definitivo do Estoicismo aplicado à vida moderna —
+      10 capítulos que vão transformar sua mente, fortalecer seu caráter
+      e trazer paz onde há caos.
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">10</span>
+        <span class="stat-label">Capítulos</span>
+      </div>
+      <div class="divider-stat"></div>
+      <div class="stat">
+        <span class="stat-num">+2mil</span>
+        <span class="stat-label">Anos de Sabedoria</span>
+      </div>
+      <div class="divider-stat"></div>
+      <div class="stat">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Transformação</span>
+      </div>
+    </div>
+
+    <div class="cta-group">
+      <a href="https://pay.kiwify.com.br/FcHPFq4" class="btn-main" target="_blank" rel="noopener">
+        Quero meu e-book agora
+        <span class="btn-arrow">→</span>
+      </a>
+      <div class="cta-guarantee">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Acesso imediato após a compra · Formato PDF
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="book-wrap">
+
+      <div class="book-3d" onclick="window.open('https://pay.kiwify.com.br/FcHPFq4','_blank')">
+        <div class="book-spine"></div>
+        <div class="book-cover">
+          <div class="book-inner">
+            <div class="book-badge-inner">ESTOICISMO DE VALOR</div>
+            <div class="book-circle">
+              <div class="book-phi">Φ</div>
+            </div>
+            <div class="book-title-inner">
+              A ARTE DE VIVER
+              <span>COM SABEDORIA</span>
+            </div>
+            <div class="book-line"></div>
+            <div class="book-subtitle-inner">
+              O Poder do Estoicismo Aplicado à Vida Moderna
+            </div>
+            <div class="book-bottom-badge">· 10 CAPÍTULOS ·</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-shadow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     BENEFITS
+════════════════════════════════════════════ -->
+<section class="benefits">
+  <div class="section-inner">
+    <div class="section-label reveal">O que você vai aprender</div>
+    <h2 class="section-title reveal">Benefícios que <em>duram a vida toda</em></h2>
+
+    <div class="benefits-grid reveal">
+      <div class="benefit-card">
+        <div class="benefit-num">01 —</div>
+        <h3 class="benefit-title">Equanimidade em qualquer situação</h3>
+        <p class="benefit-text">Aprenda a manter a calma e a clareza mental mesmo nas circunstâncias mais desafiadoras da vida — no trabalho, nos relacionamentos e nas crises.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">02 —</div>
+        <h3 class="benefit-title">Liberdade das opiniões alheias</h3>
+        <p class="benefit-text">Pare de viver para aprovação externa. O Estoicismo ensina que a única opinião que verdadeiramente importa é a sua própria — baseada em virtude.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">03 —</div>
+        <h3 class="benefit-title">Resiliência inabalável</h3>
+        <p class="benefit-text">Transforme obstáculos em combustível. Cada adversidade se torna uma oportunidade de crescimento com as ferramentas estoicas de reencadramento mental.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">04 —</div>
+        <h3 class="benefit-title">Foco e disciplina real</h3>
+        <p class="benefit-text">Elimine distrações e alinhe suas ações com seus valores mais profundos. A produtividade estoica é sustentável porque nasce do propósito, não do impulso.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">05 —</div>
+        <h3 class="benefit-title">Paz com o que não pode mudar</h3>
+        <p class="benefit-text">Através da dicotomia do controle, você para de desperdiçar energia com o incontrolável e direciona tudo para o que realmente está em suas mãos.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">06 —</div>
+        <h3 class="benefit-title">Propósito e significado</h3>
+        <p class="benefit-text">Viver de acordo com as quatro virtudes cardeais — sabedoria, justiça, coragem e temperança — cria uma vida com sentido que vai além do efêmero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     BIG QUOTE
+════════════════════════════════════════════ -->
+<section class="big-quote-section">
+  <div class="section-inner">
+    <p class="big-quote-text reveal">
+      "Perde-se mais tempo adiando do que em qualquer outra coisa. É isso que mantém vocês em atraso,
+      é isso que arruína a vida — a perturbação que os amanhãs nos trazem enquanto desperdiçamos os dias de hoje."
+    </p>
+    <div class="big-quote-author reveal">— Sêneca, Sobre a Brevidade da Vida</div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     CHAPTERS
+════════════════════════════════════════════ -->
+<section class="chapters">
+  <div class="section-inner">
+    <div class="chapters-header reveal">
+      <div class="section-label">Conteúdo completo</div>
+      <h2 class="section-title">Todos os <em>10 capítulos</em></h2>
+    </div>
+
+    <div class="chapters-list reveal">
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 01</span>
+        <div class="chapter-info">
+          <div class="chapter-name">A Origem do Estoicismo</div>
+          <div class="chapter-sub">Das Pedras de Atenas à Vida Moderna</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 02</span>
+        <div class="chapter-info">
+          <div class="chapter-name">O Controle do que É Nosso</div>
+          <div class="chapter-sub">A Dicotomia do Controle</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 03</span>
+        <div class="chapter-info">
+          <div class="chapter-name">A Virtude como Bem Supremo</div>
+          <div class="chapter-sub">Por que o Caráter é Tudo</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 04</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Memento Mori</div>
+          <div class="chapter-sub">A Meditação sobre a Morte que nos Liberta</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 05</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Emoções e Razão</div>
+          <div class="chapter-sub">Como o Estoicismo Transforma Sentimentos</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 06</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Amor Fati</div>
+          <div class="chapter-sub">Amar o Destino, Aceitar a Realidade</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 07</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Resiliência Estoica</div>
+          <div class="chapter-sub">Enfrentando Adversidades com Força Interior</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 08</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Relações e Comunidade</div>
+          <div class="chapter-sub">O Ser Humano como Animal Social</div>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <span class="chapter-num">CAP 09</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Estoicismo e Produtividade</div>
+          <div class="chapter-sub">Foco, Disciplina e Ação Deliberada</div>
+        </div>
+      </div>
+      <div class="chapter-item" style="border-right:none;">
+        <span class="chapter-num">CAP 10</span>
+        <div class="chapter-info">
+          <div class="chapter-name">Praticando o Estoicismo Hoje</div>
+          <div class="chapter-sub">Um Guia para a Vida Cotidiana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     FOR WHO
+════════════════════════════════════════════ -->
+<section class="for-who">
+  <div class="section-inner">
+    <div class="for-who-grid">
+      <div class="for-who-list reveal">
+        <div class="for-who-item">
+          <span class="for-who-icon">🧠</span>
+          <div class="for-who-text">
+            <strong>Profissionais sob pressão</strong>
+            Que precisam de clareza mental e resiliência emocional para tomar decisões difíceis sem perder a paz.
+          </div>
+        </div>
+        <div class="for-who-item">
+          <span class="for-who-icon">🔥</span>
+          <div class="for-who-text">
+            <strong>Pessoas passando por crises</strong>
+            Que buscam ferramentas reais para superar perdas, mudanças e adversidades com força interior.
+          </div>
+        </div>
+        <div class="for-who-item">
+          <span class="for-who-icon">📈</span>
+          <div class="for-who-text">
+            <strong>Buscadores de crescimento</strong>
+            Que querem desenvolver disciplina, propósito e consistência — não apenas motivação passageira.
+          </div>
+        </div>
+        <div class="for-who-item">
+          <span class="for-who-icon">🕊️</span>
+          <div class="for-who-text">
+            <strong>Quem quer viver com mais paz</strong>
+            Que cansou de ser controlado pelas emoções e quer encontrar equanimidade genuína no dia a dia.
+          </div>
+        </div>
+      </div>
+
+      <div class="for-who-right reveal">
+        <div class="section-label">Este e-book é para você</div>
+        <h2 class="section-title">Quem se beneficia <em>desta leitura?</em></h2>
+        <p class="for-who-desc">
+          Não importa sua idade, profissão ou momento de vida — os princípios estoicos são universais.
+          Foram testados por escravos, imperadores, filósofos e guerreiros ao longo de mais de dois mil anos.
+          Agora, eles estão ao seu alcance em linguagem clara e aplicação prática.
+        </p>
+        <a href="https://pay.kiwify.com.br/FcHPFq4" class="btn-main" target="_blank" rel="noopener">
+          Começar minha transformação
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="testimonials-header reveal">
+      <div class="section-label">O que dizem os leitores</div>
+      <h2 class="section-title">Histórias de <em>transformação</em></h2>
+    </div>
+
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <span class="testimonial-quote-mark">"</span>
+        <p class="testimonial-text">Comecei a ler sem muita expectativa e terminei com minha vida completamente reformulada. A forma como o conteúdo é apresentado — prático, profundo e honesto — é rara. Recomendo para qualquer pessoa que quer de verdade se conhecer melhor.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div>
+            <span class="testimonial-name">Rafael M.</span>
+            <span class="testimonial-role">Jornalista, São Paulo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <span class="testimonial-quote-mark">"</span>
+        <p class="testimonial-text">Passei por um período muito difícil — perda de emprego e separação ao mesmo tempo. Este e-book me deu as ferramentas que eu precisava para encarar a situação de frente. O capítulo sobre Amor Fati mudou minha perspectiva completamente.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <span class="testimonial-name">Ana Paula S.</span>
+            <span class="testimonial-role">Designer, Belo Horizonte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <span class="testimonial-quote-mark">"</span>
+        <p class="testimonial-text">Sou médico e trabalho sob pressão constante. As práticas estoicas que aprendi aqui — especialmente o diário noturno e a premeditação — se tornaram parte indispensável da minha rotina. Minha tomada de decisão melhorou enormemente.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div>
+            <span class="testimonial-name">Carlos V.</span>
+            <span class="testimonial-role">Médico, Porto Alegre</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════ -->
+<section class="cta-section" id="comprar">
+  <div class="section-inner">
+    <div class="cta-box reveal">
+      <div class="section-label" style="justify-content:center; margin-bottom:24px;">Garanta agora</div>
+
+      <h2 class="cta-title">Sua jornada estoica<br>começa hoje</h2>
+      <p class="cta-desc">
+        Acesso imediato ao e-book completo com todos os 10 capítulos,
+        citações originais e exercícios práticos aplicáveis a partir de hoje.
+      </p>
+
+      <div class="cta-features">
+        <div class="cta-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          10 capítulos completos
+        </div>
+        <div class="cta-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Exercícios práticos diários
+        </div>
+        <div class="cta-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Formato PDF — leia em qualquer dispositivo
+        </div>
+        <div class="cta-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Acesso vitalício
+        </div>
+      </div>
+
+      <a href="https://pay.kiwify.com.br/FcHPFq4" class="btn-main-large" target="_blank" rel="noopener">
+        ✦ &nbsp; Quero transformar minha vida agora &nbsp; ✦
+      </a>
+
+      <div class="guarantee-text">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Compra 100% segura · Pagamento processado pela Kiwify
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Φ &nbsp; ESTOICISMO DE VALOR</div>
+  <p class="footer-text">A Arte de Viver com Sabedoria — Todos os direitos reservados.</p>
+</footer>
+
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-left">
+    <em>A Arte de Viver com Sabedoria</em> —
+    <span>transforme sua mente hoje</span>
+  </div>
+  <a href="https://pay.kiwify.com.br/FcHPFq4" class="btn-sticky" target="_blank" rel="noopener">Comprar agora →</a>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Sticky CTA
+  const sticky = document.getElementById('stickyCta');
+  window.addEventListener('scroll', () => {
+    sticky.classList.toggle('show', window.scrollY > window.innerHeight * 0.7);
+  });
+</script>
+</body>
+</html>
